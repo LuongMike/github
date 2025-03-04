@@ -10,7 +10,6 @@ package dto;
  * @author PC
  */
 public class BookDTO {
-
     private String bookId;
     private String title;
     private String author;
@@ -19,12 +18,6 @@ public class BookDTO {
     private int quantity;
 
     public BookDTO() {
-        this.bookId = "";
-        this.title = "";
-        this.author = "";
-        this.publishYear = 0;
-        this.price = 0;
-        this.quantity = 0;
     }
 
     public BookDTO(String bookId, String title, String author, int publishYear, double price, int quantity) {
@@ -88,5 +81,6 @@ public class BookDTO {
     public String toString() {
         return "BookDTO{" + "bookId=" + bookId + ", title=" + title + ", author=" + author + ", publishYear=" + publishYear + ", price=" + price + ", quantity=" + quantity + '}';
     }
-
+    
+    
 }
