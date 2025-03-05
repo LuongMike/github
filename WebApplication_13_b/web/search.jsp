@@ -4,6 +4,7 @@
     Author     : tungi
 --%>
 
+<%@page import="util.AuthUtils"%>
 <%@page import="dto.BookDTO"%>
 <%@page import="java.awt.print.Book"%>
 <%@page import="java.util.List"%>
@@ -250,7 +251,7 @@
                         <th>PublishYear</th>
                         <th>Price</th>
                         <th>Quantity</th>
-                            <% if (user.getRoleId().equals("AD")) { %>      
+                        <% if (AuthUtils.isAdmin(session)) { %>      
                         <th>Action</th>
                             <%}%>
                     </tr>
@@ -259,14 +260,14 @@
                     <%                        for (BookDTO b : books) {
                     %>
                     <tr>
-                        <td><%=b.getBookId()%></td>
+                        <td><%=b.getBookID()%></td>
                         <td><%=b.getTitle()%></td>
                         <td><%=b.getAuthor()%></td>
                         <td><%=b.getPublishYear()%></td>
                         <td><%=b.getPrice()%></td>
                         <td><%=b.getQuantity()%></td>
-                        <% if (user.getRoleId().equals("AD")) {%>  
-                        <td><a href="MainController?action=delete&id=<%=b.getBookId()%>&searchTerm=<%=searchTerm%>">
+                        <% if (AuthUtils.isAdmin(session)) {%>  
+                        <td><a href="MainController?action=delete&id=<%=b.getBookID()%>&searchTerm=<%=searchTerm%>">
                                 <img src="assets/images/delete-icon.png" style="height: 25px"/>
                             </a></td>
                             <%}%>

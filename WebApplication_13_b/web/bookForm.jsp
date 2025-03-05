@@ -3,6 +3,7 @@
     Created on : Feb 27, 2025, 8:16:21 AM
     Author     : tungi
 --%>
+<%@page import="util.AuthUtils"%>
 <%@page import="dto.UserDTO"%>
 <%@page import="dto.BookDTO"%>
 <%@page import="java.awt.print.Book"%>
@@ -167,9 +168,7 @@
         <jsp:include page="header.jsp"/>
 
         <div class="page-content">
-            <% if (session.getAttribute("user") != null) {
-                    UserDTO user = (UserDTO) session.getAttribute("user");
-                    if (user.getRoleId().equals("AD")) {
+            <% if (AuthUtils.isAdmin(session)) {
             %>
             <%
                 BookDTO book = new BookDTO();
@@ -246,13 +245,6 @@
                 <h1>403 Error</h1>
                 <p>You do not have permission to access this content!</p>
                 <a href="MainController?action=search" class="back-link">Back to Book List</a>
-            </div>
-            <%}
-                } else {%>
-            <div class="form-container error-container">
-                <h1>Access Denied</h1>
-                <p>Please log in to access this page.</p>
-                <a href="login.jsp" class="back-link">Go to Login</a>
             </div>
             <%}%>
         </div>
