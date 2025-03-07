@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ultis;
+package util;
 
 import dao.UserDAO;
 import dto.UserDTO;
@@ -11,10 +11,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author PC
+ * @author tungi
  */
-public class AuthenUtils {
-    public static final String ADMIN_ROLE ="AD";
+public class AuthUtils {
+    public static final String ADMIN_ROLE = "AD";
     public static final String USER_ROLE = "US";
     
     
@@ -26,26 +26,21 @@ public class AuthenUtils {
 
     public static boolean isValidLogin(String strUserID, String strPassword) {
         UserDTO user = getUser(strUserID);
-//        System.out.println(user);
-//        System.out.println(user.getPassword());
-//        System.out.println(strPassword);
         if (user != null && user.getPassword().equals(strPassword)) {
             return true;
         } else {
             return false;
         }
     }
-    
     public static boolean isLoggedIn(HttpSession session){
         return session.getAttribute("user")!=null;
     }
     
     public static boolean isAdmin(HttpSession session){
-        if (!isLoggedIn(session)) {
+        if(!isLoggedIn(session)){
             return false;
-        } else {
-            UserDTO user = (UserDTO) session.getAttribute("user");
-            return user.getRoleId().equals(ADMIN_ROLE);
         }
+        UserDTO user = (UserDTO)session.getAttribute("user");
+        return user.getRoleId().equals(ADMIN_ROLE);
     }
 }
