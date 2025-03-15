@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package util;
+package utils;
 
 import dao.UserDAO;
 import dto.UserDTO;
@@ -26,7 +26,7 @@ public class AuthUtils {
 
     public static boolean isValidLogin(String strUserID, String strPassword) {
         UserDTO user = getUser(strUserID);
-        if (user != null && user.getPassword().equals(strPassword)) {
+        if (user != null && PasswordUtils.checkPassword(strPassword, user.getPassword())) {
             return true;
         } else {
             return false;
